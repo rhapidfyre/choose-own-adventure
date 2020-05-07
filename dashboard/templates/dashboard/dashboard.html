@@ -11,7 +11,7 @@
                 <h5 class="text-center text-white"><strong>Click on any Adventure to start playing</strong></h5>
                 <ul class="list-group">
                     {% for eachAdventure in listOfAdventures %}
-                        <li class="list-group-item bg-danger">
+                        <li class="list-group-item">
                             <div class="row">
                                 <a class="card-body btn btn-success mx-auto col-10" href="/play/{{eachAdventure.id}}"><strong>{{eachAdventure.title}}</strong></a>
                             </div>
