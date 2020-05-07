@@ -6,4 +6,5 @@ urlpatterns = [
     path('login/', views.displayLogin, name="Login"),
     path('login/<int:msgCode>', views.displayLogin, name="Login With Warning"),
     path("newAccount/", views.displayNewAccount, name="New Account"),
+    path("logout/", views.logout, name="logout"),
 ]

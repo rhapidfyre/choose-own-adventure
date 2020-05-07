@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate as DJauthenticate
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as DJlogin
 from django.contrib.auth import logout as DJlogout
+from django.contrib.auth import authenticate as DJauthenticate
 from . import forms
 
 #-------------------LOGIN/NEWUSER FUNCTIONS------------------------------------
@@ -52,8 +53,13 @@ def displayNewAccount(request):
         form = forms.newUser()
     return render(request, "dashboard/login.html", context={"form":form, "otherMsg":otherMsg})
 
+@login_required
+def logout(request):
+       DJlogout(request)
+       return redirect("/")
 #----------------------------------------------------------------------------------------------------
 #----------------------------------Dashboard---------------------------------------------------------
+@login_required
 def viewDashboard(request):
-    return HttpResponse("Dashboard temp view.")
+    return render(request, "dashboard/dashboard.html")
     

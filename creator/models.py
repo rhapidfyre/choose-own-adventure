@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 #Describing ForeignKey relationships - Giving the parent class the _set functionality to grab objects who link to it via foreignkey.
 #AdventureContainers have sets of Slides
 #Slides have A Choice Container and a GoBack(A GoBack will have the same ChoiceContainer foreign key if it's referencing a starting slide.) - Also NextSlide Classes
@@ -8,9 +10,11 @@ from django.db import models
 class AdventureContainer(models.Model):
     title = models.CharField(max_length=100)
     published = models.BooleanField(default=False)
+    user = models.ForeignKey(User, on_delete = models.SET_NULL, null=True) #Stores first_name, last_name, username, password
+
     
     def createFromDict(data_Dict):
-        newAdventure = AdventureContainer.objects.create(title=data_Dict["title"])
+        newAdventure = AdventureContainer.objects.create(title=data_Dict["title"], user=data_Dict["user"])
         return newAdventure
     
     def editFromDict(id, data_Dict):
