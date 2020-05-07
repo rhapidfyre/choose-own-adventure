@@ -132,10 +132,10 @@
                                             <p class="card-text"> {{eachChoice.0.text}} </p>
                                             <ul class="list-group list-group-flush">
                                                 {%if eachChoice.0.pathAssigned %}
-                                                    <li class="list-group-item"><a href="/create/adv/{{adventure.id}}/edit/{{eachChoice.1.id}}/edit" class="badge badge-success col-10">Go To Assigned Path Slide</a></li>
-                                                    <li class="list-group-item"><a href="/create/adv/{{adventure.id}}/edit/{{container.id}}/edit/{{eachChoice.0.id}}" class="badge badge-warning col-10">Edit Path</a></li>
+                                                    <li class="list-group-item"><a href="/create/adv/{{adventure.id}}/edit/{{eachChoice.1.id}}/edit" class="badge badge-success col-12">Go To Assigned Path Slide</a></li>
+                                                    <li class="list-group-item"><a href="/create/adv/{{adventure.id}}/add/{{container.id}}/add/{{eachChoice.0.id}}/link" class="badge badge-info col-12">Link This Choice to A Different Slide</a></li>
                                                 {%else%}
-                                                    <li class="list-group-item"><a href="/create/adv/{{adventure.id}}/add/{{container.id}}/add/{{eachChoice.0.id}}/assign" class="badge badge-info col-10">Connect This Choice to a New Slide</a></li>
+                                                    <li class="list-group-item"><a href="/create/adv/{{adventure.id}}/add/{{container.id}}/add/{{eachChoice.0.id}}/assign" class="badge badge-info col-10">Link This Choice to a New Slide</a></li>
                                                     <li class="list-group-item"><a href="/create/adv/{{adventure.id}}/add/{{container.id}}/add/{{eachChoice.0.id}}/link" class="badge badge-info col-10">Link This Choice to Existing Slide</a></li>
                                                 {%endif%}
                                                 <li class="list-group-item"><a href="/create/adv/{{adventure.id}}/edit/{{container.id}}/edit/{{eachChoice.0.id}}" class="badge badge-primary col-10">Edit Choice</a></li>
