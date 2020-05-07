@@ -9,5 +9,7 @@ python:
 env:
   - DJANGO=2.2 DB=sqlite
   - DJANGO=3.0 DB=sqlite
+install:
+  - pip install django
 script:
   - python manage.py test
