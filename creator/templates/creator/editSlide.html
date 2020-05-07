@@ -49,6 +49,24 @@
                             <a href="/create/adv/{{adventure.id}}/edit/{{goBack.id}}/edit" class="btn btn-success mx-auto col-3">Go To Parent/Previous Slide</a>
                         {% endif %}
                         <br>
+                        {% if winningSlide %}
+                            {% if unconfiguredSlides|length == 0 %}
+                                <a href="/create/adv/{{adventure.id}}/submit" class="btn btn-success mx-auto col-3">Submit Adventure</a>
+                            {% else %}
+                                <div class="col-3 mx-auto btn btn-warning">
+                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Adventure's can only be submitted once all choices have paths linked to them.">
+                                        <button class="btn btn-danger" style="pointer-events: none;" type="button" disabled>Submit Adventure</button>
+                                    </span>            
+                                </div>                
+                            {% endif %}
+                        {% else %}
+                            <div class="col-3 mx-auto btn btn-warning">
+                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Adventure's can only be submitted once a winning slide has been added.">
+                                    <button class="btn btn-danger" style="pointer-events: none;" type="button" disabled>Submit Adventure</button>
+                                </span>            
+                            </div>                        
+                        {% endif %}
+                        <br>
                         <div class="btn-group btn-group-sm mx-auto" role="group">
                             <button class="btn btn-group btn-primary mx-auto" type="button" data-toggle="collapse" data-target="#Choice Options" aria-expanded="false" aria-controls="Choice Options">Toggle Choice Options Panel</button>
                             <a class="btn btn-group btn-primary mx-auto" data-toggle="collapse" href="#Unfinished Choices" role="button" aria-expanded="false" aria-controls="Unfinished Choices">Toggle Unfinished Slides Panel</a>

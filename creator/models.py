@@ -23,12 +23,12 @@ class AdventureContainer(models.Model):
         editAdventure.save()
         return editAdventure
         
-    def flipPublished(id):
-        editAdventure = AdventureContainer.objects.get(id=id)
-        if editAdventure.published == True:
-            editAdventure.published = False
+    def flipPublished(self):
+        if self.published == True:
+            self.published = False
         else:
-            editAdventure.published = True
+            self.published = True
+        self.save()
         return editAdventure
     
 class Slide(models.Model):

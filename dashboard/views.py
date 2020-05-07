@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as DJlogin
 from django.contrib.auth import logout as DJlogout
 from django.contrib.auth import authenticate as DJauthenticate
+from creator.models import AdventureContainer
 from . import forms
 
 #-------------------LOGIN/NEWUSER FUNCTIONS------------------------------------
@@ -61,5 +62,7 @@ def logout(request):
 #----------------------------------Dashboard---------------------------------------------------------
 @login_required
 def viewDashboard(request):
-    return render(request, "dashboard/dashboard.html")
+    listOfAdventures = AdventureContainer.objects.all().filter(published=True)
+    
+    return render(request, "dashboard/dashboard.html", context={"listOfAdventures":listOfAdventures})
     

@@ -44,6 +44,13 @@ def getUnlinkedSlides(adventure):
             unlinkedSlides.append((eachSlide, choiceContainer, adventure))
     return unlinkedSlides
 
+def checkWinningSlide(adventure):
+    slideSet = list(adventure.slide_set.all().filter(winningSlide=True))
+    if len(slideSet) > 0:
+        return True
+    else:
+        return False
+
 @login_required
 def displayNewAdventure(request):
     if request.method=="POST":
@@ -168,11 +175,12 @@ def deleteSlide(request, adventureID, containerID):
 def displayEditSlide(request, adventureID, containerID):
     adventure = models.AdventureContainer.objects.get(id = adventureID)
     if adventure.user == request.user:
+        adventure.published = False
+        adventure.save()
         slide = adventure.slide_set.get(id = models.ChoiceContainer.objects.get(id=containerID).curSlide.id)
         container = models.ChoiceContainer.objects.get(id=containerID)
         choices = container.choice_set.all()
         choice_Tuple = []
-        #Need to get prevslide choice container
         goBackContainer = None
         if slide.startSlide == False:
             goBackContainer = models.ChoiceContainer.objects.get(curSlide=container.prevSlide.Slide)
@@ -193,12 +201,11 @@ def displayEditSlide(request, adventureID, containerID):
                 return redirect("/create/adv/" + str(adventureID) + "/edit/"+str(containerID) + "/edit")
         else:
             form = forms.editSlideForm(instance=slide)
+            #Eventually grab all unconfigured choices in choice_container so they can be displayed.
+            return render(request, "creator/editSlide.html", context={"form":form, "adventure":adventure, "container":container, "choices":choice_Tuple, "unconfiguredSlides":unconfiguredSlides, "unlinkedSlides":unlinkedSlides,"goBack":goBackContainer, "winningSlide":checkWinningSlide(adventure)})
+
     else:
         return redirect("")
-
-    
-        #Eventually grab all unconfigured choices in choice_container so they can be displayed.
-    return render(request, "creator/editSlide.html", context={"form":form, "adventure":adventure, "container":container, "choices":choice_Tuple, "unconfiguredSlides":unconfiguredSlides, "unlinkedSlides":unlinkedSlides,"goBack":goBackContainer})
 
 @login_required
 def displayNewChoice(request, adventureID, containerID):
@@ -239,9 +246,19 @@ def displayEditChoice(request, adventureID, containerID, choiceID):
 @login_required
 def deleteChoice(request, adventureID, containerID, choiceID):
     adventure = models.AdventureContainer.objects.get(id=adventureID)
-    if adventure.creator_name == request.user:
+    if adventure.user == request.user:
         deleteChoice = models.Choice.objects.get(id=choiceID)
         deleteChoice.delete()
         return redirect("/create/adv/" + str(adventureID) + "/edit/"+str(containerID) + "/edit")
     else:
         return redirect("")
+
+@login_required
+def submitAdventure(request, adventureID):
+    adventure = models.AdventureContainer.objects.get(id=adventureID)
+    if adventure.user == request.user:
+        adventure.published = True
+        adventure.save()
+        return redirect("/")
+    else:
+        return redirect("/")

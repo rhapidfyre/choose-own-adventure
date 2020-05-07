@@ -12,5 +12,6 @@ urlpatterns = [
     path('<int:adventureID>/edit/<int:containerID>/delete', views.deleteSlide),
     path('<int:adventureID>/edit/<int:containerID>/edit/<int:choiceID>', views.displayEditChoice),
     path('<int:adventureID>/edit/<int:priorContainerID>/edit/<int:fromChoiceID>/assign', views.displayEditNextSlide),
-    path('<int:adventureID>/edit/<int:containerID>/edit/<int:choiceID>/delete', views.deleteChoice),  
+    path('<int:adventureID>/edit/<int:containerID>/edit/<int:choiceID>/delete', views.deleteChoice),
+    path('<int:adventureID>/submit', views.submitAdventure)
 ]
