@@ -9,7 +9,5 @@ python:
 env:
   - DJANGO=2.2 DB=sqlite
   - DJANGO=3.0 DB=sqlite
-install:
-  - pip install -r requirements.txt
 script:
   - python manage.py test
