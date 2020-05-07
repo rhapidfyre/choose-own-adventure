@@ -4,7 +4,7 @@
 ## Continuous Integration reports
 |-|Stable|Master|Dev|-|
 |:---:|:---:|:---:|:---:|:---:|
-||badge|badge|badge||
+||[![Build Status](https://travis-ci.com/rhapidfyre/choose-own-adventure.svg?branch=stable)](https://travis-ci.com/rhapidfyre/choose-own-adventure)|[![Build Status](https://travis-ci.com/rhapidfyre/choose-own-adventure.svg?branch=master)](https://travis-ci.com/rhapidfyre/choose-own-adventure)|[![Build Status](https://travis-ci.com/rhapidfyre/choose-own-adventure.svg?branch=dev)](https://travis-ci.com/rhapidfyre/choose-own-adventure)||
 
 ### Stable
 All work pushed to the **stable** branch is automatically distributed to the production server(s).
