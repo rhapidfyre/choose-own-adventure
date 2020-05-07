@@ -15,6 +15,7 @@ All work pushed to the **master** branch is ran through continuous integration
 
 ### Development
 All work pushed to the **dev** branch is considered in progress and not suitable for reproduction
+
 -----------------
 # About this Repository
 > This project is a Choose Your Own Adventure game made for the Web Development course (CINS 465) at California State University, Chico. The repository is open for the purpose of portfolio as well as guidance for any other students who may be struggling with how to get Django, Python, or anything to work.
