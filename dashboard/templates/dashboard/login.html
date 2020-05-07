@@ -1,0 +1,70 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="mx-auto" style="width:500px; padding-top:20px;">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4" style="text-align:center"><strong>Log In</strong></h1>
+                {% if form %}
+                    <p class="lead">
+                    <form method="post">
+                        {% csrf_token %}
+                            <ul class="list-group">
+                                {% if errorMsg %}
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="text-align:center">
+                                        <strong>{{ errorMsg }}</strong>
+                                        <br>
+                                        <a href="/newAccount">Click here to create an account</a>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {%endif%}
+                                {% if otherMsg %}
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="text-align:center">
+                                        <strong>{{ otherMsg }}</strong>
+                                        <br>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {% endif %}
+                                {% for field in form %}
+                                    <li class="list-group-item">
+                                        <h5 style="text-align:center">
+                                        {{field.label}}
+                                        </h5>
+                                        {{field}}
+                                        {% if field.errors %}
+                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                {{field.errors | striptags}}
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        {% endif %}                                        
+                                    </li>
+                                {% endfor %}
+                                <li class="list-group-item">
+                                        <button type="Submit" value="Submit" class="form-control form-control-lg btn btn-success"> {% if newAccount %}Log in{% else %}Create Account{% endif %}</button>
+                                </li>
+                                {% if newAccount %}
+                                <li class="list-group-item">
+                                    <button type="button" class="btn btn-warning form-control form-control-lg" onclick="window.location.href ='/newAccount'">Create Account</button>
+                                </li>
+                                {% else %}
+                                <li class="list-group-item">
+                                    <button type="button" class="btn btn-warning form-control form-control-lg" onclick="window.location.href ='/login'">Go Back</button>
+                                </li>
+                                {% endif %}
+                                <br>
+                            </ul>
+                    </form>
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}
