@@ -1,0 +1,41 @@
+{%extends "creator/base.html" %}
+{% block title %}Adventure Editor{% endblock %}
+
+{% block content %}
+<div class="row">
+<div class="card mx-auto col-6 bg-dark text-light mt-5">
+  <div class="card-body">
+    <h1 class="card-title text-center"><strong>Create Your Adventure</strong></h1>
+    <div class="card-text text-dark">
+        <form method="post">
+            {% csrf_token %}
+                <ul class="list-group">
+                    {% for field in form %}
+                        <li class="list-group-item">
+                            <h5 style="text-align:center">
+                            {{field.label}}
+                            </h5>
+                            {{field}}
+                            {% if field.errors %}
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    {{field.errors | striptags}}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endif %}                                        
+                        </li>
+                    {% endfor %}
+                    <li class="list-group-item">
+                        <button type="Submitt" value="Submitt" class="form-control form-control-lg btn btn-success">Submit</button>
+                    </li>
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-warning form-control form-control-lg" onclick="window.location.href ='/Dashboard'">Cancel</button>
+                    </li>
+                </ul>
+            </form>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

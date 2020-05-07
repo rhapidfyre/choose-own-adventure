@@ -1,0 +1,53 @@
+{%extends "creator/base.html" %}
+{% block title %}Edit{% endblock %}
+
+{% block content %}
+    <div class="mx-auto" style="width:500px; padding-top:20px;">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4" style="text-align:center"><strong>{{title}}</strong></h1>
+                    <p class="lead">
+                    <form method="post">
+                        {% csrf_token %}
+                            <ul class="list-group">
+                                {% for field in form %}
+                                    <li class="list-group-item">
+                                        <h5 style="text-align:center">
+                                        {{field.label}}
+                                        </h5>
+                                        {{field}}
+                                        {% if field.errors %}
+                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                {{field.errors | striptags}}
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        {% endif %}                                        
+                                    </li>
+                                {% endfor %}
+                                <div class="container">
+                                    <div class="row">
+                                        {% for eachChoice in choices %}
+                                            <div class="col-1">
+                                                {{eachChoice.text}}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            <li class="list-group-item">
+                                    <button type="button" class="btn btn-warning form-control form-control-lg" onclick="window.location.href ='/create/adv/{{adventure.id}}/add/{{container.id}}/add'">Add Choice</button>
+                            <li class="list-group-item">
+                                    <button type="Submitt" value="Submitt" class="form-control form-control-lg btn btn-success">Submit</button>
+                            </li>
+                            <li class="list-group-item">
+                                <button type="button" class="btn btn-warning form-control form-control-lg" onclick="window.location.href ='/Dashboard'">Go Back</button>
+                                </li>
+                            <br>
+                        </ul>
+                    </form>
+                    </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
