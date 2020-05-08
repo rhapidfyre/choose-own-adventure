@@ -63,6 +63,5 @@ def logout(request):
 @login_required
 def viewDashboard(request):
     listOfAdventures = AdventureContainer.objects.all().filter(published=True)
-    
     return render(request, "dashboard/dashboard.html", context={"listOfAdventures":listOfAdventures})
     

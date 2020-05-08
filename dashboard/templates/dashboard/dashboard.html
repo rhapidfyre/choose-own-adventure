@@ -2,24 +2,18 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<br>
 <div class="row">
-    <div class="col-10 mx-auto">
-    <h1 class="text-center">Choose Your Own Adventure</h1>
-        <div class="card bg-dark">
-            <div class="card-body col-10 mx-auto">
-                <h5 class="text-center text-white"><strong>Click on any Adventure to start playing</strong></h5>
-                <ul class="list-group">
-                    {% for eachAdventure in listOfAdventures %}
-                        <li class="list-group-item">
-                            <div class="row">
-                                <a class="card-body btn btn-success mx-auto col-10" href="/play/{{eachAdventure.id}}"><strong>{{eachAdventure.title}}</strong></a>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
+    <div class="col-12 mx-auto  container-fluid" style="min-height:100vh; opacity: 1; background-image: url('https://media.giphy.com/media/3oEdv0DUQOagqEI30k/giphy.gif'); background-size:cover">
+    <br>
+    <h1 class="text-center text-light">Choose Your Own Adventure</h1>
+        <br>
+        <h5 class="text-center text-white"><strong>Click on an Adventure to Start Playing</strong></h5>
+            {% for eachAdventure in listOfAdventures %}
+                    <div class="row">
+                        <a class="card-body btn btn-success mx-auto col-6" style="background-image: url('https://media.giphy.com/media/3oEdv0DUQOagqEI30k/giphy.gif'); background-size:cover" href="/play/{{eachAdventure.id}}"><strong>{{eachAdventure.title}}</strong></a>
+                    </div>
+                    <br>
+            {% endfor %}
     </div>
 </div>
 {% endblock %}
