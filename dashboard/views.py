@@ -34,9 +34,9 @@ def login(request, login_Dict):
     user = DJauthenticate(username=login_Dict["username"].upper(), password=login_Dict["password"])
     if user is not None:
         DJlogin(request, user)
-        return redirect("/")
+        return redirect("dashboard/login.html")
     else:
-        return redirect("/login/1") #displayLogin(request, reset=True, errorMSG="Invalid login credentials")
+        return redirect("dashboard/login.html") #displayLogin(request, reset=True, errorMSG="Invalid login credentials")
     
 def displayNewAccount(request):
     otherMsg = None
@@ -49,7 +49,7 @@ def displayNewAccount(request):
                                     last_name = data_Dict["last_name"],
                                     email = data_Dict["email"].lower(),
                                     password = data_Dict["password"])
-            return redirect("/login/2")
+            return redirect("login/2")
     else:
         form = forms.newUser()
     return render(request, "dashboard/login.html", context={"form":form, "otherMsg":otherMsg})
@@ -63,5 +63,5 @@ def logout(request):
 @login_required
 def viewDashboard(request):
     listOfAdventures = AdventureContainer.objects.all().filter(published=True)
-    return render(request, "dashboard/dashboard.html", context={"listOfAdventures":listOfAdventures})
+    return render(request, "/", context={"listOfAdventures":listOfAdventures})
     

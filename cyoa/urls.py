@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from creator import urls as creatorUrls
 from dashboard import urls as dashboardUrls
-from forum import urls as forumsUrls
+from forums import urls as forumsUrls
 
 urlpatterns = [
     path('', include(dashboardUrls)),
