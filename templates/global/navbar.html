@@ -1,0 +1,51 @@
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
+    <a class= "navbar-brand" href="/">Choose Your Own Adventure!</a>
+    <button class="navbar-toggler" type="button"
+      data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/creator/">Create</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/forums/">Forums</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/stats/">Stats</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about/">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/api/v1/">REST API</a>
+            </li>
+            </div>
+        </ul>
+    </div>
+    
+    <ul class="navbar-nav ml-auto">
+      {% if notSignedIn %}
+        <li>
+            <a class="nav-link" href="/logout/">Logout</a>
+        </li>
+        {% else %}
+        <li>
+            <a class="nav-link" href="/join/">Register</a>
+        </li>
+        <li>
+            <a class="nav-link" href="/login/">Login</a>
+        </li>
+        {% endif %}
+    </ul>
+  </nav>
