@@ -1,6 +1,15 @@
 
 from django.urls import path
 from . import views
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'adventure', views.AdventureViewSet)
+router.register(r'slide', views.SlideViewSet)
+router.register(r'goback', views.GoBackViewSet)
+router.register(r'choicecont', views.ChoiceContainerViewSet)
+router.register(r'choice', views.ChoiceViewSet)
+router.register(r'nextslide', views.NextSlideViewSet)
 
 urlpatterns = [
     path('', views.displayNewAdventure),

@@ -3,8 +3,64 @@ from . import forms
 from . import models
 from django.core import exceptions
 from django.contrib.auth.decorators import login_required
+from rest_framework import viewsets
+from rest_framework import permissions
+from creator.serializers import UserSerializer
+from creator.serializers import AdventureSerializer
+from creator.serializers import SlideSerializer
+from creator.serializers import GoBackSerializer
+from creator.serializers import ChoiceContainerSerializer
+from creator.serializers import ChoiceSerializer
+from creator.serializers import NextSlideSerializer
+from creator.models import AdventureContainer
+from creator.models import Slide
+from creator.models import GoBack
+from creator.models import ChoiceContainer
+from creator.models import Choice
+from creator.models import NextSlide
+from creator.forms import newAdventureForm
+from creator.forms import editAdventureForm
+from creator.forms import newSlideForm
+from creator.forms import editSlideForm
+from creator.forms import newChoiceForm
+from creator.forms import editChoiceForm
+from creator.forms import editNextSlide
+from creator.forms import newNextSlide
+from creator.forms import linkSlide
 
 
+class AdventureViewSet(viewsets.ModelViewSet):
+  queryset = AdventureContainer.objects.all()
+  serializer_class = AdventureSerializer
+  permission_classes = [permissions.IsAuthenticated]
+  def perform_create(self, serializer):
+    serializer.save(user=self.request.user)
+
+class SlideViewSet(viewsets.ModelViewSet):
+  queryset = Slide.objects.all()
+  serializer_class = SlideSerializer
+  permission_classes = [permissions.IsAuthenticated]
+
+class GoBackViewSet(viewsets.ModelViewSet):
+  queryset = GoBack.objects.all()
+  serializer_class = GoBackSerializer
+  permission_classes = [permissions.IsAuthenticated]
+
+class ChoiceContainerViewSet(viewsets.ModelViewSet):
+  queryset = ChoiceContainer.objects.all()
+  serializer_class = ChoiceContainerSerializer
+  permission_classes = [permissions.IsAuthenticated]
+
+class ChoiceViewSet(viewsets.ModelViewSet):
+  queryset = Choice.objects.all()
+  serializer_class = ChoiceSerializer
+  permission_classes = [permissions.IsAuthenticated]
+
+class NextSlideViewSet(viewsets.ModelViewSet):
+  queryset = NextSlide.objects.all()
+  serializer_class = NextSlideSerializer
+  permission_classes = [permissions.IsAuthenticated]
+    
 # Create your views here.
 #/create/adv/<adventureID>/edit/<container>/edit/<choice>/assign
 #/create/adv/<adventureID>/add/<container>/add</choice>/assign

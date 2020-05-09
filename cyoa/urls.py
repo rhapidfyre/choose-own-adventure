@@ -18,11 +18,15 @@ from django.urls import path, include
 from creator import urls as creatorUrls
 from dashboard import urls as dashboardUrls
 from forums import urls as forumsUrls
+from rest_framework import routers
+
+router = routers.DefaultRouter()
 
 urlpatterns = [
     path('', include(dashboardUrls)),
     path('forums/', include(forumsUrls)),
     path('admin/', admin.site.urls),
     path('create/adv/', include(creatorUrls)),
-    
+    path('api/v1/', include(router.urls)),
+    path('api-auth/v1/', include('rest_framework.urls', namespace='rest_framework'))
 ]
