@@ -108,6 +108,31 @@ def checkWinningSlide(adventure):
         return False
 
 @login_required
+def displayEditAdventure(request, adventureID):
+    adventure = models.AdventureContainer.objects.get(id = adventureID)
+    if adventure.user == request.user:
+        if adventure.published == True:
+            adventure.flipPublished()
+        if request.method=="POST":
+            form = forms.editAdventureForm(request.POST, instance = adventure)
+            if form.is_valid():
+                data_Dict = form.cleaned_data
+                adventure.editFromDict(data_Dict)                
+                
+                startSlide = adventure.slide_set.all().filter(startSlide=True)
+                if len(startSlide) > 0:
+                    containerID = models.ChoiceContainer.objects.get(curSlide=startSlide[0]).id
+                    return redirect("/create/adv/" + str(adventureID) + "/edit/"+str(containerID) + "/edit")
+                else:
+                    return redirect("/create/adv/" + str(adventureID) + "/add")
+        else:
+            form = forms.editAdventureForm(instance = adventure)
+        return render(request, "creator/editAdventure.html", context={"form":form, "adventure":adventureID})
+    else:
+        return redirect("")
+
+
+@login_required
 def displayNewAdventure(request):
     if request.method=="POST":
         form = forms.newAdventureForm(request.POST)
@@ -318,3 +343,12 @@ def submitAdventure(request, adventureID):
         return redirect("/")
     else:
         return redirect("/")
+
+@login_required
+def viewCreationDashboard(request):
+    publishedUserAdventures=models.AdventureContainer.objects.all().filter(user = request.user, published=True)
+    unpubblishedUserAdventures=models.AdventureContainer.objects.all().filter(user = request.user, published=False)
+    return render(request,"creator/dashboard.html", context={"username":request.user.username, "PA": publishedUserAdventures, "UA": unpubblishedUserAdventures})
+
+    
+    

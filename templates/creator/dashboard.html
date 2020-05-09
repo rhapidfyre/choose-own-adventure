@@ -1,0 +1,40 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 mx-auto  container-fluid" style="min-height:100vh; opacity: 1; background-image: url('https://media.giphy.com/media/3oEdv0DUQOagqEI30k/giphy.gif'); background-size:cover">
+    <br>
+    <h1 class="text-center text-light">Welcome to the Editor - {{username}}</h1>
+    <br>
+    <h4 class="text-center text-light"><strong>Create a new Adventure</strong></h4>
+    <div class="row">
+        <a class="card-body btn btn-success mx-auto col-6" style="background-image: url('https://media.giphy.com/media/fiyQQLci4d1w6Njojo/giphy.gif'); background-size:cover" href="/create/adv/new"><h3><strong class="text-light">Create New Adventure</strong></h3></a>
+    </div>
+        <br>
+            <h5 class="text-center text-white">OR</h5>
+            <br>
+            <h5 class="text-center text-white"><strong>Click on an Adventure to begin editing.</strong></h5>
+                <br>
+    <h1 class="text-center text-light">Your Unpublished Adventures</h1>
+        <br>
+            {% for eachAdventure in UA %}
+                    <div class="row">
+                        <a class="card-body btn btn-success mx-auto col-6" style="background-image: url('https://media.giphy.com/media/ekvPMNzs2OhgDpPUr7/giphy.gif'); background-size:contain" href="/create/adv/{{eachAdventure.id}}/edit">
+                            <strong>Edit: {{eachAdventure.title}}</strong>
+                        </a>
+                    </div>
+                    <br>
+            {% endfor %}
+        <br>
+        <h1 class="text-center text-light">Your Published Adventures</h1>
+        <br>
+            {% for eachAdventure in PA %}
+                    <div class="row">
+                        <a class="card-body btn btn-success mx-auto col-6" style="background-image: url('https://media.giphy.com/media/3oEdv0DUQOagqEI30k/giphy.gif'); background-size:cover" href="/create/adv/{{eachAdventure.id}}/edit"><strong>{{eachAdventure.title}}</strong></a>
+                    </div>
+                    <br>
+            {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -29,9 +29,15 @@
                     <li class="list-group-item">
                         <button type="Submitt" value="Submitt" class="form-control form-control-lg btn btn-success">Submit</button>
                     </li>
+                    {% if choiceID %}
                     <li class="list-group-item">
                         <button type="button" class="btn btn-warning form-control form-control-lg" onclick="window.location.href ='/create/adv/{{adventureID}}/edit/{{choiceID}}/edit'">Cancel</button>
                     </li>
+                    {% else %}
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-warning form-control form-control-lg" onclick="window.location.href ='/create/adv/{{adventureID}}/edit'">Cancel</button>
+                    </li>
+                    {% endif %}
                 </ul>
             </form>
     </div>

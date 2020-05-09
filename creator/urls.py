@@ -1,9 +1,10 @@
-
 from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.displayNewAdventure),
+    path('new', views.displayNewAdventure),
+    path('', views.viewCreationDashboard),
+    path('<int:adventureID>/edit', views.displayEditAdventure),
     path('<int:adventureID>/add', views.displayNewSlide),
     path('<int:adventureID>/add/<int:priorContainerID>/add/<int:fromChoiceID>/assign', views.displayNewSlide),
     path('<int:adventureID>/add/<int:priorContainerID>/add/<int:fromChoiceID>/link', views.displayLinkSlide),

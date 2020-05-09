@@ -17,11 +17,10 @@ class AdventureContainer(models.Model):
         newAdventure = AdventureContainer.objects.create(title=data_Dict["title"], user=data_Dict["user"])
         return newAdventure
     
-    def editFromDict(id, data_Dict):
-        editAdventure = AdventureContainer.objects.get(id=id)
-        editAdventure.title = data_Dict["title"]
-        editAdventure.save()
-        return editAdventure
+    def editFromDict(self, data_Dict):
+        self.title = data_Dict["title"]
+        self.save()
+        return self
         
     def flipPublished(self):
         if self.published == True:
@@ -29,7 +28,7 @@ class AdventureContainer(models.Model):
         else:
             self.published = True
         self.save()
-        return editAdventure
+        return self
     
 class Slide(models.Model):
     startSlide = models.BooleanField(default=False)

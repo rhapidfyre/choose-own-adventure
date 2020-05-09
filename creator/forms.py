@@ -7,7 +7,7 @@ class newAdventureForm(forms.Form):
 
 class editAdventureForm(ModelForm):
     class Meta:
-        models = models.AdventureContainer
+        model = models.AdventureContainer
         fields = ["title"]
         labels = {
             "title":"Name Your Adventure"
