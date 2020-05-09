@@ -13,9 +13,7 @@ def displayLogin(request, msgCode = 0):
     errorMsg = None
     otherMsg = None
     if request.method == "POST":
-        print(request.POST)
         form = forms.LoginForms.newLogin(request.POST)
-        print(form)
         if form.is_valid():
             print(form.is_valid())
             login_Dict = form.cleaned_data
@@ -36,7 +34,7 @@ def login(request, login_Dict):
         DJlogin(request, user)
         return redirect("/")
     else:
-        displayLogin(request, reset=True, errorMSG="Invalid login credentials")
+        return redirect("/login/1")
     
 def displayNewAccount(request):
     otherMsg = None
