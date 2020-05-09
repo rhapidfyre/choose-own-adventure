@@ -4,81 +4,14 @@
   <head>
     <meta charset="utf-8">
     <title>Organizer Dashboard</title>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
-    {% include "global/shared_links.html" %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/forums.css' %}">
     
   </head>
   
   <body>
     {% include "global/navbar.html" %}
     
-    <div class="row">
-      <div class="col-md-4">
-        <div class="container-fluid">
-          <div class="jumbotron">
-            <div align="center">
-            <div class="pie-chart"></div>
-            <div class="ct-chart-task ct-perfect-fourth"></div>
-            {% autoescape off %}
-            {% if has_task %}
-              <script>
-                new Chartist.Pie('.ct-chart-task',
-                { {{ chart_task }} });
-              </script>
-            {% else %}
-              <script>$(".ct-chart-task").html("No tasks found for user.");</script>
-            
-            {% endif %}
-            {% endautoescape %}
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="col-md-4">
-        <div class="container-fluid">
-          <div class="jumbotron" align="center">
-            <div align="center">
-            <div class="ct-chart-budget ct-perfect-fourth"></div>
-            {% autoescape off %}
-            {% if has_budget %}
-              <script>
-                new Chartist.Bar('.ct-chart-budget',
-                { {{ chart_budget }} });
-              </script>
-            {% else %}
-              <script>$(".ct-chart-budget").html("No budget data found for user.");</script>
-            
-            {% endif %}
-            {% endautoescape %}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="container-fluid">
-          <div class="jumbotron" align="center">
-            <div align="center">
-            <div class="ct-chart-journal ct-perfect-fourth"></div>
-            {% autoescape off %}
-            {% if chart_journal %}
-              <script>
-                $(".ct-chart-journal").html(
-                  "Entries: {{ chart_journal }}<br>" +
-                  "{{ chart_last }} days since last post<br>"
-                )
-              </script>
-            {% else %}
-              <script>$(".ct-chart-journal").html("No journal entries found for user.");</script>
-            
-            {% endif %}
-            {% endautoescape %}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
       
   </body>
 </html>
