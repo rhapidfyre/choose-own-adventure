@@ -19,8 +19,23 @@ from creator import urls as creatorUrls
 from dashboard import urls as dashboardUrls
 from forums import urls as forumsUrls
 from rest_framework import routers
+from forums.views import MessageViewSet
+from creator.views import AdventureViewSet
+from creator.views import SlideViewSet
+from creator.views import GoBackViewSet
+from creator.views import ChoiceContainerViewSet
+from creator.views import ChoiceViewSet
+from creator.views import NextSlideViewSet
+
 
 router = routers.DefaultRouter()
+router.register(r'message', MessageViewSet)
+router.register(r'adventure', AdventureViewSet)
+router.register(r'slide', SlideViewSet)
+router.register(r'goback', GoBackViewSet)
+router.register(r'choicecont', ChoiceContainerViewSet)
+router.register(r'choice', ChoiceViewSet)
+router.register(r'nextslide', NextSlideViewSet)
 
 urlpatterns = [
     path('', include(dashboardUrls)),
