@@ -11,11 +11,21 @@
     <div class="row">
         <a class="card-body btn btn-success mx-auto col-6" style="background-image: url('https://media.giphy.com/media/fiyQQLci4d1w6Njojo/giphy.gif'); background-size:cover" href="/create/adv/new"><h3><strong class="text-light">Create New Adventure</strong></h3></a>
     </div>
+    {% if UA %}
         <br>
             <h5 class="text-center text-white">OR</h5>
             <br>
             <h5 class="text-center text-white"><strong>Click on an Adventure to begin editing.</strong></h5>
-                <br>
+        <br>
+    {% elif PA %}
+        <br>
+            <h5 class="text-center text-white">OR</h5>
+            <br>
+            <h5 class="text-center text-white"><strong>Click on an Adventure to begin editing.</strong></h5>
+        <br>
+    {% endif %}
+
+    {% if UA %}
     <h1 class="text-center text-light">Your Unpublished Adventures</h1>
         <br>
             {% for eachAdventure in UA %}
@@ -27,6 +37,8 @@
                     <br>
             {% endfor %}
         <br>
+    {% endif %}
+    {% if PA%}
         <h1 class="text-center text-light">Your Published Adventures</h1>
         <br>
             {% for eachAdventure in PA %}
@@ -35,6 +47,7 @@
                     </div>
                     <br>
             {% endfor %}
+    {% endif %}
     </div>
 </div>
 {% endblock %}

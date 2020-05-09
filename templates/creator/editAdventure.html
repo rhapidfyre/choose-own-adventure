@@ -32,6 +32,12 @@
                     <li class="list-group-item">
                         <button type="button" class="btn btn-warning form-control form-control-lg" onclick="window.location.href ='/create/adv'">Cancel</button>
                     </li>
+                    <br>
+                    {% if adventure %}
+                        <li class="list-group-item">
+                            <button type="button" class="btn btn-danger form-control form-control-lg" onclick="window.location.href ='/create/adv/{{adventure}}/delete'">Delete Adventure</button>
+                        </li>
+                    {% endif %}
                 </ul>
             </form>
     </div>

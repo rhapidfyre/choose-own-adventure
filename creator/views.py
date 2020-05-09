@@ -108,6 +108,15 @@ def checkWinningSlide(adventure):
         return False
 
 @login_required
+def deleteAdventure(request, adventureID):
+    adventure = models.AdventureContainer.objects.get(id = adventureID)
+    if adventure.user == request.user:
+        adventure.delete()
+        return redirect("/create/adv/")
+    else:
+        return redirect("/")
+
+@login_required
 def displayEditAdventure(request, adventureID):
     adventure = models.AdventureContainer.objects.get(id = adventureID)
     if adventure.user == request.user:

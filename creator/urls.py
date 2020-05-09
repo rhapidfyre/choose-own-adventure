@@ -5,6 +5,7 @@ urlpatterns = [
     path('new', views.displayNewAdventure),
     path('', views.viewCreationDashboard),
     path('<int:adventureID>/edit', views.displayEditAdventure),
+    path('<int:adventureID>/delete', views.deleteAdventure),
     path('<int:adventureID>/add', views.displayNewSlide),
     path('<int:adventureID>/add/<int:priorContainerID>/add/<int:fromChoiceID>/assign', views.displayNewSlide),
     path('<int:adventureID>/add/<int:priorContainerID>/add/<int:fromChoiceID>/link', views.displayLinkSlide),
