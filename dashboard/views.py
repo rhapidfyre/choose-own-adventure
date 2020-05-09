@@ -49,7 +49,7 @@ def displayNewAccount(request):
                                     last_name = data_Dict["last_name"],
                                     email = data_Dict["email"].lower(),
                                     password = data_Dict["password"])
-            return redirect("login/2")
+            return redirect("/login/2")
     else:
         form = forms.newUser()
     return render(request, "dashboard/login.html", context={"form":form, "otherMsg":otherMsg})
