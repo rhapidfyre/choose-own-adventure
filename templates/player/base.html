@@ -13,47 +13,6 @@
 
         </style>
     </head>
-    <body class="bg-danger">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class= "navbar-brand" href="/Dashboard">Choose Your Own Adventure!</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Dashboard">Games</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Task">Create</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Budget">Forum</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Journal">Stats</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/About">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/About">REST API</a>
-                    </li>
-                    </div>
-                </ul>
-            </div>
-            <ul class="navbar-nav ml-auto", style="margin-right:100px">
-                {% if notSignedIn %}
-                <li class="nav-item">
-                    <a class="nav-link btn btn-success" href="/" style="color:white">Sign In / Create Account</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link btn btn-warning" href="/logout/">Sign out</a>
-                </li>
-                {% endif %}
-            </ul>
-        </nav>
         <div class="container-fluid bg-danger" style="min-height: 100vh; background-image: url('https://media.giphy.com/media/3oEdv1GbekAakxXO8g/giphy.gif'); background-size:cover">
             {% block content %} {% endblock %}
         </div>

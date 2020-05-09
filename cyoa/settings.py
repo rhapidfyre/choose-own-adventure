@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     #'creator.apps.CreatorConfig',
     #'dashboard.apps.DashboardConfig',
     #'forums.apps.ForumsConfig',
+    'player',
     'creator',
     'forums',
     'dashboard',

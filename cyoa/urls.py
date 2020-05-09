@@ -18,6 +18,7 @@ from django.urls import path, include
 from creator import urls as creatorUrls
 from dashboard import urls as dashboardUrls
 from forums import urls as forumsUrls
+from player import urls as playerUrls
 from rest_framework import routers
 from forums.views import MessageViewSet
 from creator.views import AdventureViewSet
@@ -42,6 +43,7 @@ urlpatterns = [
     path('forums/', include(forumsUrls)),
     path('admin/', admin.site.urls),
     path('create/adv/', include(creatorUrls)),
+    path('play/', include(playerUrls)),
     path('api/v1/', include(router.urls)),
     path('api-auth/v1/', include('rest_framework.urls', namespace='rest_framework'))
 ]
