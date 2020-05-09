@@ -1,0 +1,43 @@
+{%extends "player/base.html" %}
+{% block title %}Adventure Editor{% endblock %}
+{% block content %}
+<br>
+<div class="row">
+            <h1 class="text-light bg-dark container-fluid mx-auto text-center" style="opacity:.8"><strong>{{adventure.title}}</strong></h1>
+            <div class="mx-auto text-center card container-fluid col-8" style="background-image: url('https://images.pexels.com/photos/235985/pexels-photo-235985.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size:cover">
+                <h4 class="card-body overflow-auto" style="min-height: 400px; max-height: 600px;">You have died!</h4>
+            </div>
+</div>
+<br>
+<div class="progress col-4 mx-auto active">
+    <strong>Health: {{health}}%</strong>
+    <div class="progress-bar bg-danger active" role="progressbar" style="width: {{health}}%" aria-valuenow="{{health}}" aria-valuemin="0" aria-valuemax="100"></strong></div>
+</div>
+<br>
+<form method="post">
+<div class="row">
+    <div class="col mx-auto">
+            {% csrf_token %}
+            <div class="row">
+                <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
+                    {% for eachChoice in choices %}
+                    <label class="btn btn-secondary border col border-warning text-center" style="min-height: 100px">
+                        <input type="radio" name="choice" id="{{eachChoice.text}}" value="{{eachChoice.text}}"> 
+                        <h4>{{eachChoice.text}}</h4>
+                    </label>
+                    {%endfor%}
+                </div>
+            </div>
+        
+    </div>
+</div>
+<br>
+<div class="row">
+    <a href="/play/{{adventure.id}}" class="form-control form-control-lg btn mx-auto btn-success col-5">Play Again!</a>
+</div>
+<div class="row">
+    <a href="/play/play/end" class="form-control form-control-lg btn mx-auto btn-success col-5">Go Back to Dashboard :(</a>
+</div>
+<br>
+</form>
+{% endblock %}
