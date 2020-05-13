@@ -20,4 +20,19 @@ class MessageViewSet(viewsets.ModelViewSet):
 # Create your views here.
 @login_required
 def displayForums(request):
-  return render(request, "forums/index.html", context={})
+  page_data = {"pdata":[],"pmsg":"Ready","count":0}
+  
+  try:
+    page_data = {
+      "pdata":Messages.objects.all(),
+      "count":Messages.objects.filter(username='myname', status=0).count(),
+      "pmsg":"Successfully retrieved posts"
+    }
+  except:
+    page_data = {
+      "pdata":[],
+      "pmsg":"There are no posts, why don't you start one?",
+      "count":0
+    }
+  
+  return render(request, "forums/index.html", context=page_data)

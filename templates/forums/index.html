@@ -11,10 +11,53 @@
   </head>
   
   <body>
+  
     {% include "global/navbar.html" %}
     
-    <img src="{% static 'IMG/ralph.jpg' %}"/>
-    
+    <div class="container">
+      <div class="cont-lt">
+        <div id="forum-list">
+          {% if count > 0 %}
+            {% autoescape off %}
+              {% for entry in pdata %}
+                <div class="forum-post">
+                  <h5></h5>
+                  <div class="forum-tag">
+                    Created:
+                    <span id="forum-post1-time">
+                      {{ entry.created }}
+                    </span> by 
+                    <span id="forum-post1-user">
+                      {{ entry.author }}
+                    </span>
+                  </div>
+                  <p>{{ entry.message }}<a href="/forums/?">read more</a></p>
+                  <div class="forum-posttags">
+                    {{ entry.category }}
+                  </div>
+                </div>
+              {% endfor %}
+            {% endautoescape %}
+          {% else %}
+            <p>{{ pmsg }}</p>
+          {% endif %}
+        </div>
+      </div>
+      
+      <div class="cont-rt">
+        <form method="POST">{% csrf_token %}
+          <div id="submit-post">
+            <input type="text" placeholder="Post Title" maxlength="48" id="new-title"/>
+            <textarea id="post-body" placeholder="Message..."></textarea>
+            <div id="submit-btn">
+              <button type="submit" name="new-post" id="new-post">
+                Submit Post
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
       
   </body>
 </html>

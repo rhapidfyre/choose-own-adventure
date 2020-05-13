@@ -1,2 +1,102 @@
 
   body { background-image:url('bkg.jpg'); }
+
+  .cont-lt {
+    position: relative;
+    padding: 16px 0 0 0; margin: 0 auto;
+    float: left;
+    width: calc(70% - 4px);
+  }
+  
+  .cont-rt {
+    position: relative;
+    float: left;
+    width: calc(30% - 4px);
+  }
+  
+  .forum-post {
+    position: relative;
+    background: rgb(255,237,186);
+    border: 2px ridge #C9B98B;
+    border-radius: 8px;
+    width: 100%;
+    padding: 0 4px;
+    margin: 0;
+  }
+  
+  .forum-post h5 {
+    margin: 4px 0 0 12px;
+    padding: 0; margin: 0;
+    font-style: italic;
+  }
+  
+  .forum-post p {
+    padding: 2px;
+    margin: 0;
+  }
+  
+  .forum-tag {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+  }
+  
+  #forum-post1-user {font-style:italic;}
+  
+  .forum-tag {
+    font-size: 0.725em;
+    color: #777;
+    text-shadow: 0 0 1px black;
+  }
+  
+  .forum-posttags {
+    color: grey;
+    font-size: 0.8em;
+    font-style: italic;
+    margin: 0; padding: 0;
+  }
+  
+  #submit-post {
+    width: 90%;
+    background: rgb(235,213,179);
+    border: 2px ridge #C9B98B;
+    position: relative;
+    margin:0; padding:0;
+  }
+  
+  #submit-post input {
+    width: 100%;
+    background: #D0C8B0;
+    padding: 0; margin: 0;
+  }
+  
+  #submit-btn {
+    width: 100%;
+    text-align: right;
+    margin: 2px 4px;
+    padding: 4px 20px;
+  }
+  
+  #new-post {
+    width: 40%;
+    box-shadow: 0px 1px 0px 0px #fff6af;
+    background:linear-gradient(to bottom, #d1c899 5%, #d1b699 100%);
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #d1c899;
+    border: 1px solid #d1c899;
+    border-radius: 6px;
+  }
+  
+  #new-post:hover {
+    background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+    background-color:#ffab23;
+    color: white;
+  }
+  
+  #submit-post textarea {
+    width: 100%;
+    resize: none;
+    background: #D0C8B0;
+  }
