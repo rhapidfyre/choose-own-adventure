@@ -1,2 +1,12 @@
 
 db.sqlite3
+creator/__pycache__/
+cyoa/__pycache__/
+forums/__pycache__/
+dashboard/__pycache__/
+player/__pycache__/
+creator/migrations/
+cyoa/migrations/
+forums/migrations/
+dashboard/migrations/
+player/migrations/
