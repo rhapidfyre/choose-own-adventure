@@ -3,15 +3,16 @@
 
   .cont-lt {
     position: relative;
-    padding: 16px 0 0 0; margin: 0 auto;
+    padding: 8px; margin: 0 auto;
     float: left;
-    width: calc(70% - 4px);
+    width: 60%;
   }
   
   .cont-rt {
     position: relative;
+    padding: 8px; margin: 0 auto;
     float: left;
-    width: calc(30% - 4px);
+    width: 40%;
   }
   
   .forum-post {
@@ -21,7 +22,7 @@
     border-radius: 8px;
     width: 100%;
     padding: 0 4px;
-    margin: 0;
+    margin: 12px 4px;
   }
   
   .forum-post h5 {
@@ -62,6 +63,7 @@
     border: 2px ridge #C9B98B;
     position: relative;
     margin:0; padding:0;
+    height: 256px;
   }
   
   #submit-post input {
@@ -87,6 +89,10 @@
     text-shadow: 0px 1px 0px #d1c899;
     border: 1px solid #d1c899;
     border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    bottom: 8px;
+    right: 4px;
   }
   
   #new-post:hover {
@@ -99,4 +105,6 @@
     width: 100%;
     resize: none;
     background: #D0C8B0;
+    overflow-y: scroll;
+    height: 128px;
   }

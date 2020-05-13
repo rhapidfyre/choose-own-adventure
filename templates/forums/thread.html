@@ -13,15 +13,32 @@
   <body>
   
     {% include "global/navbar.html" %}
-    
     <div class="container-fluid">
       <div class="cont-lt">
         <div id="forum-list">
+          <div class="forum-post">
+            <h5>{{ opost.title }}</h5>
+            <div class="forum-tag">
+              Posted:
+              <span id="forum-post1-time">
+                {{ opost.created }}
+              </span> by 
+              <span id="forum-post1-user">
+                {{ opost.author }}
+              </span>
+            </div>
+            <p>{{ opost.message }}</p>
+            <div class="forum-posttags">
+              {% for tag in opost.tags.all %}
+                {{ tag }},
+              {% endfor %}
+            </div>
+          </div>
           {% if count > 0 %}
             {% autoescape off %}
-              {% for entry in pdata %}
+              {% for entry in replies %}
                 <div class="forum-post">
-                  <h5>{{ entry.title }}</h5>
+                  <h5>RE: {{ opost.title }}</h5>
                   <div class="forum-tag">
                     Created:
                     <span id="forum-post1-time">
@@ -31,17 +48,12 @@
                       {{ entry.author }}
                     </span>
                   </div>
-                  <p>{{ entry.message|truncatechars:196 }} <a href="/forums/thread/?id={{ entry.id }}">(Read More)</a></p>
-                  <div class="forum-posttags">
-                    {% for tag in entry.tags.all %}
-                      {{ tag }},
-                    {% endfor %}
-                  </div>
+                  <p>{{ entry.message }}</p>
                 </div>
               {% endfor %}
             {% endautoescape %}
           {% else %}
-            <p>{{ pmsg }}</p>
+            <p><i>No Replies - Be the first!</i></p>
           {% endif %}
         </div>
       </div>
@@ -49,12 +61,12 @@
       <div class="cont-rt">
         <form method="POST">{% csrf_token %}
           <div id="submit-post">
-            {{newpost.title}}
-            {{newpost.message}}
-            {{newpost.tags}}
+            {{newreply.title}}
+            {{newreply.message}}
+            {{newreply.tags}}
             <div id="submit-btn">
-              <button type="submit" name="new-post" id="new-post">
-                Submit Post
+              <button type="submit" name="reply-to" id="reply-to" value="{{post}}">
+                Respond
               </button>
             </div>
           </div>
