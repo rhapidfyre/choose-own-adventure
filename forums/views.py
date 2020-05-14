@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from . import forms
 from .forms import NewPostForm, NewReplyForm
-from .models import Messages
+from .models import Messages, PostTags
 from django.core import exceptions
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
 from rest_framework import permissions
-from .serializers import MessageSerializer
+from .serializers import MessageSerializer, PostTagsSerializer
 
 
 class MessageViewSet(viewsets.ModelViewSet):
@@ -16,25 +16,46 @@ class MessageViewSet(viewsets.ModelViewSet):
   def perform_create(self, serializer):
     serializer.save(author=self.request.user)
 
+class PostTagViewSet(viewsets.ModelViewSet):
+  queryset = PostTags.objects.all()
+  serializer_class = PostTagsSerializer
+  permission_classes = [permissions.IsAuthenticated]
 
 # Create your views here.
 @login_required
+def searchForums(request):
+  page_data = {"pdata":[],"pmsg":"Ready","count":0,"showhidden":False}
+  page_data["showhidden"] = request.user.is_superuser
+  
+  if request.method == 'GET' and 'search' in request.GET:
+    try:
+      page_data["pdata"] = Messages.objects.filter(tags=True).order_by("-created")
+    except Messages.DoesNotExist:
+      pass
+    return render(request, "forums/search.html", context=page_data)
+  else:
+    return redirect("forums/index.html")
+  
+@login_required
 def displayForums(request):
-  page_data = {"pdata":[],"pmsg":"Ready","count":0}
+  page_data = {"pdata":[],"pmsg":"Ready","count":0,"showhidden":False}
   
   try:
     page_data = {
       "pdata":Messages.objects.filter(replyTo__isnull=True).order_by("-created"),
       "count":Messages.objects.filter(replyTo__isnull=True).count(),
-      "pmsg":"Successfully retrieved posts"
+      "pmsg":"Successfully retrieved posts",
+      "showhidden":False
     }
-  except:
+  except Messages.DoesNotExist:
     page_data = {
       "pdata":[],
       "pmsg":"There are no posts, why don't you start one?",
-      "count":0
+      "count":0,
+      "showhidden":False
     }
-    
+  
+  page_data["showhidden"] = request.user.is_superuser
   
   if request.method == 'POST' and 'new-post' in request.POST:
     postadd_form = NewPostForm(request.POST)

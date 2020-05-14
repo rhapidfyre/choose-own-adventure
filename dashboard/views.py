@@ -5,8 +5,20 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as DJlogin
 from django.contrib.auth import logout as DJlogout
 from django.contrib.auth import authenticate as DJauthenticate
+from rest_framework import viewsets
+from rest_framework import permissions
 from creator.models import AdventureContainer
 from . import forms
+from .serializers import UserSerializer
+
+
+class UserViewSet(viewsets.ModelViewSet):
+  queryset = User.objects.all()
+  serializer_class = UserSerializer
+  permission_classes = [permissions.IsAuthenticated]
+  def perform_create(self, serializer):
+    serializer.save(user=self.request.user)
+    
 
 #-------------------LOGIN/NEWUSER FUNCTIONS------------------------------------
 def displayLogin(request, msgCode = 0):

@@ -20,7 +20,8 @@ from dashboard import urls as dashboardUrls
 from forums import urls as forumsUrls
 from player import urls as playerUrls
 from rest_framework import routers
-from forums.views import MessageViewSet
+from forums.views import MessageViewSet, PostTagViewSet
+from dashboard.views import UserViewSet
 from creator.views import AdventureViewSet
 from creator.views import SlideViewSet
 from creator.views import GoBackViewSet
@@ -30,6 +31,8 @@ from creator.views import NextSlideViewSet
 
 
 router = routers.DefaultRouter()
+router.register(r'usernames', UserViewSet)
+router.register(r'posttags', PostTagViewSet)
 router.register(r'message', MessageViewSet)
 router.register(r'adventure', AdventureViewSet)
 router.register(r'slide', SlideViewSet)

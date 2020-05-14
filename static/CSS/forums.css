@@ -25,13 +25,25 @@
     margin: 12px 4px;
   }
   
-  .forum-post h5 {
+  .forum-post-hidden {
+    position: relative;
+    background: rgb(120,120,120);
+    border: 2px ridge silver;
+    border-radius: 8px;
+    width: 100%;
+    padding: 0 4px;
+    margin: 12px 4px;
+  }
+  
+  .forum-post h5,
+  .forum-post-hidden h5 {
     margin: 4px 0 0 12px;
     padding: 0; margin: 0;
     font-style: italic;
   }
   
-  .forum-post p {
+  .forum-post p
+  .forum-post-hidden p  {
     padding: 2px;
     margin: 0;
   }
