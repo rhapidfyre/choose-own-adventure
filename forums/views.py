@@ -40,21 +40,20 @@ def searchForums(request):
 def displayForums(request):
   page_data = {"pdata":[],"pmsg":"Ready","count":0,"showhidden":False}
   
+  entries = []
   try:
+    entries = Messages.objects.filter(replyTo__isnull=True)
+  except Messages.DoesNotExist:
+    pass
+  
+  if entries.count() > 0:
     page_data = {
-      "pdata":Messages.objects.filter(replyTo__isnull=True).order_by("-created"),
-      "count":Messages.objects.filter(replyTo__isnull=True).count(),
+      "pdata":entries.order_by("-created"),
+      "count":entries.count(),
       "pmsg":"Successfully retrieved posts",
       "showhidden":False
     }
-  except Messages.DoesNotExist:
-    page_data = {
-      "pdata":[],
-      "pmsg":"There are no posts, why don't you start one?",
-      "count":0,
-      "showhidden":False
-    }
-  
+    
   page_data["showhidden"] = request.user.is_superuser
   
   if request.method == 'POST' and 'new-post' in request.POST:
