@@ -38,6 +38,12 @@ def searchForums(request):
   
 @login_required
 def displayForums(request):
+  if len(PostTags.objects.all()) < 4:
+    PostTags.objects.get_or_create(tag="Admin Post")
+    PostTags.objects.get_or_create(tag="Unrelated")
+    PostTags.objects.get_or_create(tag="General")
+    PostTags.objects.get_or_create(tag="Support")
+
   page_data = {"pdata":[],"pmsg":"Ready","count":0,"showhidden":False}
   
   entries = []
