@@ -33,13 +33,6 @@ def viewSlide(request, adventureName):
         return redirect("/") #send those cheaters back to the dashboard - they didn't start from square 1.
     slide = player.checkPoint
     adventure = slide.adventureContainer
-    if player.health <= 0:
-        playerStats = UserStatistics.objects.get_or_create(user=request.user, adventure=adventure)[0]
-        playerStats.timesLost = playerStats.timesLost + 1
-        playerStats.save()
-        adventure.timesLost = adventure.timesLost + 1
-        adventure.save()
-        return render(request, "player/loser.html", context={"health": 0, "adventure":adventure})
     choices = models.ChoiceContainer.objects.get(curSlide=slide).choice_set.all()
     if request.method == "POST":
         choiceSelection = request.POST.get("choice", False)
@@ -52,6 +45,14 @@ def viewSlide(request, adventureName):
             pass
         else:
             player.health = player.health + choice.healthChange
+       
+        if player.health <= 0:
+            playerStats = UserStatistics.objects.get_or_create(user=request.user, adventure=adventure)[0]
+            playerStats.timesLost = playerStats.timesLost + 1
+            playerStats.save()
+            adventure.timesLost = adventure.timesLost + 1
+            adventure.save()
+            return render(request, "player/loser.html", context={"health": 0, "adventure":adventure}) 
         
         if newSlide.winningSlide:
             playerStats = UserStatistics.objects.get_or_create(user=request.user, adventure=adventure)[0]
@@ -61,7 +62,8 @@ def viewSlide(request, adventureName):
             playerStats.save()
             adventure.timesWon = adventure.timesWon + 1
             adventure.save()
-        
+            
+            
         player.checkPoint = newSlide
         player.save()
         return redirect("/play/" + adventure.title.replace(" ", "_"))

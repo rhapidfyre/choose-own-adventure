@@ -34,7 +34,7 @@ class AdventureContainer(models.Model):
     
 class Slide(models.Model):
     startSlide = models.BooleanField(default=False)
-    text = models.CharField(max_length=256)
+    text = models.CharField(max_length=1000)
     adventureContainer = models.ForeignKey(AdventureContainer, on_delete=models.CASCADE) 
     winningSlide = models.BooleanField(default=False)
     
@@ -73,7 +73,7 @@ class ChoiceContainer(models.Model):
             return ChoiceContainer.objects.create(curSlide=curSlide,prevSlide=goBack)
 
 class Choice(models.Model):
-    text = models.CharField(max_length=50)
+    text = models.CharField(max_length=256)
     healthChange = models.IntegerField(default=0)
     choiceContainer = models.ForeignKey(ChoiceContainer, on_delete=models.CASCADE) #gives existing ChoiceContainer objects ChoiceContainer.choice_set.all() functionality
     pathAssigned = models.BooleanField(default=False)

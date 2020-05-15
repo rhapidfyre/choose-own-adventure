@@ -17,7 +17,7 @@ class editAdventureForm(ModelForm):
             }
 
 class newSlideForm(forms.Form):
-    text = forms.CharField(max_length=256, label="text", widget=forms.Textarea(attrs={"class":"form-control form-control-lg text-center"}))
+    text = forms.CharField(max_length=1000, label="text", widget=forms.Textarea(attrs={"class":"form-control form-control-lg text-center"}))
     winningSlide = forms.ChoiceField(label="Slide Outcome", choices=[(False,"Continue" ),(True, "Winning Slide - End Game On Slide")], widget=forms.Select(attrs={"class":"form-control form-control-lg text-center"}))
 
 class editSlideForm(ModelForm):
@@ -33,7 +33,7 @@ class editSlideForm(ModelForm):
         }
 
 class newChoiceForm(forms.Form):
-    text = forms.CharField(max_length=50, label="Choice Text", widget=forms.Textarea(attrs={"class":"form-control form-control-lg"}))
+    text = forms.CharField(max_length=256, label="Choice Text", widget=forms.Textarea(attrs={"class":"form-control form-control-lg"}))
     healthChange = forms.IntegerField(label="Health Change", widget=forms.NumberInput(attrs={"class":"form-control form-control-lg"}))
 
 class editChoiceForm(ModelForm):
