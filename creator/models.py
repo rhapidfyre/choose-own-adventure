@@ -11,7 +11,9 @@ class AdventureContainer(models.Model):
     title = models.CharField(max_length=100)
     published = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete = models.SET_NULL, null=True) #Stores first_name, last_name, username, password
-
+    timesPlayed = models.IntegerField(default=0)
+    timesWon = models.IntegerField(default=0)
+    timesLost = models.IntegerField(default=0)
     
     def createFromDict(data_Dict):
         newAdventure = AdventureContainer.objects.create(title=data_Dict["title"], user=data_Dict["user"])

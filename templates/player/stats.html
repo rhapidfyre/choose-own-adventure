@@ -1,0 +1,61 @@
+{% extends "player/base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 mx-auto  container-fluid" style="min-height:100vh; opacity: 1; background-image: url('https://media.giphy.com/media/3oEdv0DUQOagqEI30k/giphy.gif'); background-size:cover">
+    <br>
+    <h1 class="text-center text-light">Game Statistics</h1>
+    {% if GenericList %}
+        <br>
+        <h5 class="text-center text-white"><strong>Top 5 Most Played Games</strong></h5>
+        <div class="row">
+            <div class="mx-auto col-6" style="background-image: url('https://images.pexels.com/photos/235985/pexels-photo-235985.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); background-size:cover">
+                <div class="row">
+                        <h6 class="text-white mx-auto col-3 text-center"><strong>Adventure Name</strong></h6>
+                        <h6 class="text-white mx-auto col-3 text-center"><strong>Total Number of Player Wins</strong></h6>
+                        <h6 class="text-white mx-auto col-3 text-center"><strong>Total Number of Player Losses</strong></h6>
+                </div>
+            {% for eachAdventure in GenericList %}
+                    <div class="row">
+                            <h6 class="text-white mx-auto col-3 text-center"><strong>{{eachAdventure.title}}</strong></h6>
+                            <h6 class="text-white mx-auto col-3 text-center"><strong>{{eachAdventure.timesWon}}</strong></h6>
+                            <h6 class="text-white mx-auto col-3 text-center"><strong>{{eachAdventure.timesLost}}</strong></h6>
+                    </div>
+                    <br>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    <br>
+    {% if personalStats %}
+            <br>
+            <h5 class="text-center text-white"><strong>Personal Game Statistics</strong></h5>
+                 <div class="row">
+            <div class="mx-auto col-6" style="background-image: url('https://images.pexels.com/photos/235985/pexels-photo-235985.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); background-size:cover">
+                <div class="row">
+                        <h6 class="text-white mx-auto col-3 text-center"><strong>Adventure Name</strong></h6>
+                        <h6 class="text-white mx-auto col-3 text-center"><strong>Total Number of Wins</strong></h6>
+                        <h6 class="text-white mx-auto col-3 text-center"><strong>Total Number Losses</strong></h6>
+                        <h6 class="text-white mx-auto col-3 text-center"><strong>Finishing Health Score</strong></h6>
+                </div>
+            {% for eachAdventure in personalStats %}
+                    <div class="row">
+                            <h6 class="text-white mx-auto col-3 text-center"><strong>{{eachAdventure.adventure.title}}</strong></h6>
+                            <h6 class="text-white mx-auto col-3 text-center"><strong>{{eachAdventure.timesWon}}</strong></h6>
+                            <h6 class="text-white mx-auto col-3 text-center"><strong>{{eachAdventure.timesLost}}</strong></h6>
+                            <h6 class="text-white mx-auto col-3 text-center"><strong>{{eachAdventure.highestWinningHealth}}</strong></h6>
+                    </div>
+                    <br>
+            {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    {% if personalStats %}
+    {% elif GenericList %}
+    {% else %}
+        <h5 class="text-center text-white"><strong>No Stats are availble at the moment.</strong></h5>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

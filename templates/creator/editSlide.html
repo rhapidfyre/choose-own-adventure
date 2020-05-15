@@ -68,7 +68,9 @@
                         {% endif %}
                         <br>
                         <div class="btn-group btn-group-sm mx-auto" role="group">
+                            {% if curSlide.winningSlide == False%}
                             <button class="btn btn-group btn-primary mx-auto" type="button" data-toggle="collapse" data-target="#Choice Options" aria-expanded="false" aria-controls="Choice Options">Toggle Choice Options Panel</button>
+                            {% endif %}
                             <a class="btn btn-group btn-primary mx-auto" data-toggle="collapse" href="#Unfinished Choices" role="button" aria-expanded="false" aria-controls="Unfinished Choices">Toggle Unfinished Slides Panel</a>
                         </div>
                     </ul>

@@ -237,7 +237,7 @@ def displayLinkSlide(request, adventureID, priorContainerID=None, fromChoiceID=N
             slideSelection = models.Slide.objects.all().filter(adventureContainer=adventure)
             slideSelection = slideSelection.exclude(id=models.ChoiceContainer.objects.get(id=priorContainerID).curSlide.id)
             if len(slideSelection) == 0:
-                return displayNewSlide(request, adventureID, priorContainerID, fromChoiceID)
+                return redirect("/create/adv/" + str(adventureID) + "/add/" + str(priorContainerID) + "/add/" + str(fromChoiceID) + "/assign")
             choices = []
             for eachSelection in slideSelection:
                 choices.append((eachSelection.id, eachSelection))
@@ -292,7 +292,7 @@ def displayEditSlide(request, adventureID, containerID):
         else:
             form = forms.editSlideForm(instance=slide)
             #Eventually grab all unconfigured choices in choice_container so they can be displayed.
-            return render(request, "creator/editSlide.html", context={"form":form, "adventure":adventure, "container":container, "choices":choice_Tuple, "unconfiguredSlides":unconfiguredSlides, "unlinkedSlides":unlinkedSlides,"goBack":goBackContainer, "winningSlide":checkWinningSlide(adventure)})
+            return render(request, "creator/editSlide.html", context={"form":form, "adventure":adventure, "curSlide":slide, "container":container, "choices":choice_Tuple, "unconfiguredSlides":unconfiguredSlides, "unlinkedSlides":unlinkedSlides,"goBack":goBackContainer, "winningSlide":checkWinningSlide(adventure)})
 
     else:
         return redirect("")
